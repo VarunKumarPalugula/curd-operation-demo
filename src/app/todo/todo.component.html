@@ -1,0 +1,57 @@
+<div class="bg-dark text-white d-flex align-items-center justify-content-between p-2">
+    <h4>Hi {{loginUser}}</h4>
+    <button class="btn text-white" [routerLink]="['/']"> LOGOUT </button>
+</div>
+<mat-card class="m-3 p-0 bg-secondary text-white">
+    <div class="d-flex justify-content-between align-items-center p-2">
+        <h4>TODO List</h4>
+        <div>
+            <input type="text" class="m-1 p-1" (input)="applyFilter($event.target.value)" />
+            <button (click)="onAddOrUpdate()" class="btn btn-info ">Add</button>
+        </div>
+    </div>
+    <div class='overflow-auto'>
+        <table mat-table [dataSource]="dataSource" matSort class="w-100">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><strong> Id </strong> </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.id}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="userId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><strong> User Id </strong> </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.userId}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><strong> Title </strong></th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.title}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="completed">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><strong> Completed </strong> </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.completed}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="modify">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    <div class="d-flex justify-content-around">
+                        <button class='btn btn-secondary text-white d-flex align-items-center'
+                            (click)='onAddOrUpdate(element)'>
+                            Edit </button>
+                        <button class='btn btn-danger text-white d-flex align-items-center'
+                            (click)='deleteItem(element)'>
+                            Delete </button>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</mat-card>

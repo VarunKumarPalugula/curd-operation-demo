@@ -1,0 +1,9 @@
+<h4> Do you want to Delete the TODO "{{ data.item.title }}" </h4>
+<div class="d-flex justify-content-end">
+  <span class="p-2">
+    <button class="btn btn-primary" (click)="deleteItem()">Confirm</button>
+  </span>
+  <span class="p-2">
+    <button class="btn btn-secondary pl-2" (click)="dialogRef.close()">Cancel</button>
+  </span>
+</div>

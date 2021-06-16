@@ -1,0 +1,32 @@
+<div class="userLogin bg-primary text-white">
+    <div class="d-flex justify-content-center pt-3">
+      <h1>Login</h1>
+    </div>
+    <div class="d-flex justify-content-center pt-5">
+      <mat-card class="w-50">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="username">Username <sup class="text-danger">*</sup> </label>
+            <input type="text" autocomplete="false" formControlName="username" class="form-control" 
+              [ngClass]="{ 'is-invalid': submitted && input.username.errors }" />
+            <div *ngIf="submitted && input.username.errors" class="invalid-feedback">
+              <div *ngIf="input.username.errors.required">Username is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="password">Password <sup class="text-danger">*</sup></label>
+            <input type="password" autocomplete="false" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && input.password.errors }" />
+            <div *ngIf="submitted && input.password.errors" class="invalid-feedback">
+              <div *ngIf="input.password.errors.required">Password is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button  class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+  
+  
